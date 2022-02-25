@@ -30,8 +30,8 @@ class UserTest(TestCase):
         """This method is used to post user """
 
         request=self.factory.post("http://localhost:8000/api/Users/",{
-            "first_name": "ahmad",
-            "last_name": "rather",
+            "first_name": "sample",
+            "last_name": "sample2",
             "company_name": "bqe",
             "age": 20,
             "city": "srinagar",
@@ -61,14 +61,14 @@ class UserTest(TestCase):
         view = UserView.as_view({'put': 'update'})
         response = view(request,pk="502")
         self.assertEquals(response.status_code,200)
-        # self.assertDictEqual(response,data)
+        
     def test_the_delete(self):
         
         """This method is used to delete the user """
 
         request = self.factory.delete("http://localhost:8000/api/Users/")
         view = UserView.as_view({'delete': 'destroy'})
-        response = view(request,pk=self.user.pk)
+        response = view(request,pk="503")
         self.assertEquals(response.status_code,200)
-        # self.assertDictEqual(response,data)
+       
         
