@@ -16,6 +16,7 @@ class UserTest(TestCase):
             pincode= 192233,
             email= "ahmad@gmail.com",
             web= "www.ahmad.com")
+        self.user.save()    
 
     def test_the_get(self):
         
@@ -59,7 +60,7 @@ class UserTest(TestCase):
             "web": "www.ahmad.com"
         })
         view = UserView.as_view({'put': 'update'})
-        response = view(request,pk="502")
+        response = view(request,pk=self.user.pk)
         self.assertEquals(response.status_code,200)
         
     def test_the_delete(self):
@@ -68,7 +69,7 @@ class UserTest(TestCase):
 
         request = self.factory.delete("http://localhost:8000/api/Users/")
         view = UserView.as_view({'delete': 'destroy'})
-        response = view(request,pk="503")
-        self.assertEquals(response.status_code,200)
+        response = view(request,pk=self.user.pk)
+        self.assertEquals(response.status_code,204)
        
         
